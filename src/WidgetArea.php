@@ -20,10 +20,6 @@
 
 namespace WPS\WP\FlexibleWidgets;
 
-use WPS\Core\Singleton;
-use WPS\WP\Parallax\Customizer;
-use WPS\WP\Parallax\ParallaxScript;
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
