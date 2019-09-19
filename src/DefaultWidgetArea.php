@@ -40,6 +40,7 @@ if ( ! class_exists( __NAMESPACE__ . '\DefaultWidgetArea' ) ) {
 				'before' => "<div class=\"$classes\">",
 				'after'  => '</div>',
 			) );
+
 		}
 
 	}
