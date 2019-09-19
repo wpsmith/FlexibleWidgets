@@ -26,7 +26,7 @@
   },
   "autoload": {
     "psr-4": {
-      "WPS\\WP\\Scripts\\": "src/"
+      "WPS\\WP\\FlexibleWidgets\\": "src/"
     }
   }
 }
