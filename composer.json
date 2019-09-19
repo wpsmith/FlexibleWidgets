@@ -1,0 +1,32 @@
+{
+  "name": "wpsmith/flexible-widgets",
+  "description": "Flexible Widgets for front page display.",
+  "keywords": [
+    "wordpress",
+    "widgets",
+    "genesis"
+  ],
+  "homepage": "https://github.com/wpsmith/FlexibleWidgets",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Travis Smith",
+      "email": "t@wpsmith.net",
+      "homepage": "https://wpsmith.net/",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/wpsmith/FlexibleWidgets/issues"
+  },
+  "require": {
+    "php": ">=7.0.0",
+    "wpsmith/singleton": "^1.0.2",
+    "wpsmith/customizer": "^1.0.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "WPS\\WP\\Scripts\\": "src/"
+    }
+  }
+}

@@ -1,0 +1,227 @@
+// Contain floats / clearfix
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin bgcolor($name, $hover: true) {
+  $got_color: false;
+  $c: #fff;
+
+  @if map_has_key($colors, $name) {
+    $got_color: true;
+    $c: map_get($colors, $name);
+  }
+
+  @if ($got_color) {
+    .bg-#{$name},
+    .bg-#{$name}.button-#{$name} {
+      background-color: $c;
+    }
+
+    @if ($hover) {
+      .bg-#{$name}.button-#{$name}:hover {
+        background-color: invert($c);
+      }
+    }
+  }
+}
+
+@mixin bordercolor($name) {
+  $got_color: false;
+  $c: #fff;
+
+  @if map_has_key($colors, $name) {
+    $got_color: true;
+    $c: map_get($colors, $name);
+  }
+
+  @if ($got_color) {
+    .border-#{$name},
+    .border-#{$name}.button-#{$name} {
+      border: 1px solid $c;
+    }
+  }
+}
+
+@mixin btncolor($name) {
+  $got_color: false;
+  $c: #fff;
+
+  @if map_has_key($colors, $name) {
+    $got_color: true;
+    $c: map_get($colors, $name);
+  }
+
+  @if ($got_color) {
+    .button-#{$name} {
+      background-color: $c;
+      //border: 0;
+      color: invert($c);
+      //cursor: pointer;
+      //font-size: 1.6rem;
+      //padding: 1.6rem 2.4rem;
+      //text-decoration: none;
+      //white-space: normal;
+      //width: auto;
+    }
+  }
+}
+
+@mixin textcolor($name) {
+  $got_color: false;
+  $c: #fff;
+
+  @if map_has_key($colors, $name) {
+    $got_color: true;
+    $c: map_get($colors, $name);
+  }
+
+  @if ($got_color) {
+    .text-#{$name},
+    .text-#{$name}.button-#{$name},
+    .text-#{$name} > a,
+    .text-#{$name} > a > span {
+      color: $c;
+    }
+  }
+}
+
+@mixin absolutecenter($axis: "both") {
+  position: absolute;
+  @if $axis == "y" {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @if $axis == "x" {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @if $axis == "both" {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@mixin rgba($type, $color, $percentage, $shade: ligthen) {
+  @if $shade == lighten {
+    @if $type == color {
+      color: solid-lighten($color, $percentage);
+      color: rgba($color, $percentage);
+    }
+    @if $type == bg {
+      background-color: solid-lighten($color, $percentage);
+      background-color: rgba($color, $percentage);
+    }
+  } @else {
+    @if $type == color {
+      color: solid-darken($color, $percentage);
+      color: rgba($color, $percentage);
+    }
+    @if $type == bg {
+      background-color: solid-darken($color, $percentage);
+      background-color: rgba($color, $percentage);
+    }
+  }
+}
+
+@mixin linear-gradient($direction, $color-stops...) {
+  // Direction has been omitted and happens to be a color-stop
+  @if is-direction($direction) == false {
+    $color-stops: $direction, $color-stops;
+    $direction: 180deg;
+  }
+
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}
+
+@mixin clear-no-margin {
+  clear: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@mixin full {
+  clear: left;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
+@mixin fw() {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  ////margin-left: calc(-100vw / 2 + 500px / 2);
+  ////margin-right: calc(-100vw / 2 + 500px / 2);
+  //margin-left: calc(50% - 50vw);
+  //margin-right: calc(50% - 50vw);
+}
+
+@mixin svg-size($height, $width: false) {
+  svg {
+    height: #{$height}px;
+
+    @if ($width) {
+      width: #{$width}px;
+    } @else {
+      width: #{$height}px;
+    }
+  }
+}
+
+@mixin padding-margin($size, $selector: false) {
+  #{$selector}.padding-#{$size} {
+    padding: rem($size);
+  }
+
+  #{$selector}.padding-right-#{$size} {
+    padding-right: rem($size);
+  }
+
+  #{$selector}.padding-left-#{$size} {
+    padding-left: rem($size);
+  }
+
+  #{$selector}.padding-top-#{$size} {
+    padding-top: rem($size);
+  }
+
+  #{$selector}.padding-bottom-#{$size} {
+    padding-bottom: rem($size);
+  }
+
+  #{$selector}.margin-#{$size} {
+    margin: rem($size);
+  }
+
+  #{$selector}.margin-right-#{$size} {
+    margin-right: rem($size);
+  }
+
+  #{$selector}.margin-left-#{$size} {
+    margin-left: rem($size);
+  }
+
+  #{$selector}.margin-top-#{$size} {
+    margin-top: rem($size);
+  }
+
+  #{$selector}.margin-bottom-#{$size} {
+    margin-bottom: rem($size);
+  }
+}

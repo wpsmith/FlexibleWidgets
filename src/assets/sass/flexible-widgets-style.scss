@@ -1,0 +1,230 @@
+@import 'mixins/index';
+
+/* # Flexible Widgets
+---------------------------------------------------------------------------------------------------- */
+.flexible-widget-area {
+  clear: both;
+  @include clearfix();
+
+  > .wrap {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .widget {
+    margin-bottom: 2.3rem;
+    position: relative;
+
+    .entry {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .widget-provider {
+      padding-bottom: 3.7rem;
+    }
+
+    blockquote {
+      margin: 4rem 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.featured-content {
+      clear: none;
+    }
+
+    @include breakpoint(481px) {
+      //&:not(.featured-content),
+      &,
+      &.featured-content .entry {
+        float: left;
+        margin-left: 2.564102564102564%;
+        margin-right: 0;
+      }
+
+      &.widget-count-1 .widget,
+      &.widget-count-1.featured-content-count-1 .widget.featured-content .entry {
+        @include clear-no-margin;
+      }
+    }
+
+    // 100% width for mobile/small phones.
+    @include breakpoint(0px, 480px) {
+      //&:not(.featured-content),
+      &,
+      &.featured-content .entry {
+        float: none;
+        width: 100%;
+      }
+    }
+  }
+
+  // Make fourths halves for 481-860px screens.
+  @include breakpoint(481px, 860px) {
+
+    //&.widget-halves .widget:not(.featured-content),
+    &.widget-halves .widget,
+    &.featured-halves .widget.featured-content .entry {
+      width: 48.717948717948715%;
+    }
+
+    //&.widget-fourths .widget:nth-child(odd):not(.featured-content),
+    &.widget-fourths .widget:nth-child(odd),
+    &.featured-halves .widget.featured-content .entry:nth-child(odd) {
+      @include clear-no-margin;
+    }
+
+  }
+
+  @include breakpoint(861px) {
+    .widget:first-of-type,
+    .widget.featured-content .entry:first-of-type {
+      @include clear-no-margin;
+    }
+
+    // COLUMN CLASSES.
+    //&.widget-fourths .widget:not(.featured-content),
+    &.widget-fourths .widget,
+    &.featured-fourths .widget.featured-content .entry {
+      width: 23.076923076923077%;
+    }
+
+    //&.widget-halves .widget:not(.featured-content),
+    &.widget-halves .widget,
+    &.featured-halves .widget.featured-content .entry {
+      width: 48.717948717948715%;
+    }
+
+    //&.widget-thirds .widget:not(.featured-content),
+    &.widget-thirds .widget,
+    &.featured-thirds .widget.featured-content .entry {
+      width: 31.623931623931625%;
+    }
+
+    // Full width widgets.
+    &.widget-full .widget,
+      //&.widget-full .widget:not(.featured-content) .entry,
+      //&.widget-full .widget .entry,
+    &.widget-full .widget.featured-content {
+      @include full;
+    }
+
+    &:not(.alternate) {
+
+      // Halves.
+
+      // Uneven Halves. 1x2x2..
+      &.widget-halves.widgets-uneven .widget:nth-child(even),
+      &.widget-halves.widgets-uneven .widget.featured-content .entry:nth-child(even) {
+        @include clear-no-margin;
+      }
+
+      &.featured-halves.featured-uneven .widget.featured-content .entry:nth-child(odd) {
+        @include clear-no-margin;
+      }
+
+      // Even Halves. 2x2x2..
+      &.widget-halves.widgets-even .widget:nth-child(odd),
+      &.widget-halves.widgets-even:not(.has-featured-content-widget) .widget.featured-content .entry:nth-child(odd),
+      &.featured-halves.featured-even .widget.featured-content .entry:nth-child(even) {
+        @include clear-no-margin;
+      }
+
+      // Even Thirds. 3x3x3..
+      &.widget-thirds .widget:nth-child(3n+1),
+      &.widget-thirds:not(.has-featured-content-widget) .widget.featured-content .entry:nth-child(3n+1),
+      &.featured-thirds .widget.featured-content .entry:nth-child(3n+2) {
+        @include clear-no-margin;
+      }
+
+      // 4x4x4..
+      &.widget-fourths .widget:nth-child(4n+1),
+      &.widget-fourths:not(.has-featured-content-widget) .widget.featured-content .entry:nth-child(4n+1),
+      &.featured-fourths .widget.featured-content .entry:nth-child(4n+2) {
+        @include clear-no-margin;
+      }
+
+      // Unevens.
+      &.widget-halves.widgets-uneven .widget:first-of-type,
+      &.widget-area.widgets-uneven .widget.featured-content:nth-of-type(1),
+      &.widget-halves.widgets-uneven .widget.featured-content:first-of-type,
+      &.featured-halves.featured-uneven .widget.featured-content .entry:first-of-type,
+      &.featured-fourths.featured-uneven .widget.featured-content .entry:first-of-type {
+        @include full;
+      }
+
+    }
+
+    &.alternate {
+
+      // 1x2x2...
+      &.widget-halves.widgets-uneven .widget:nth-child(even):not(.featured-content),
+        //&.widget-halves.widgets-uneven:not(.has-featured-content-widget) .widget.featured-content .entry:nth-child(even),
+      &.featured-halves.featured-uneven .widget.featured-content .entry:nth-child(even) {
+        @include clear-no-margin;
+      }
+
+      // 1x2x2..
+      &.widget-halves.widgets-even .widget:nth-child(even):not(.featured-content),
+        //&.widget-halves.widgets-even .widget.featured-content .entry:nth-child(even),
+      &.featured-halves.featured-even .widget.featured-content .entry:nth-child(odd) {
+        @include clear-no-margin;
+      }
+
+      // 1x3x3..
+      &.widget-thirds .widget:nth-child(3n+2):not(.featured-content),
+        //&.widget-thirds .widget.featured-content .entry:nth-child(3n+2),
+      &.featured-thirds.featured-even .widget.featured-content .entry:nth-child(3n) {
+        @include clear-no-margin;
+      }
+
+      // 1x4x4..
+      &.widget-fourths .widget:nth-child(4n+2):not(.featured-content),
+      &.widget-fourths .widget.featured-content .entry:nth-child(4n+2),
+      &.featured-fourths.featured-uneven .widget.featured-content .entry:nth-child(4n+3) {
+        @include clear-no-margin;
+      }
+
+      &.featured-halves .widget.featured-content .entry:first-of-type,
+      &.featured-thirds .widget.featured-content .entry:first-of-type,
+      &.featured-fourths .widget.featured-content .entry:first-of-type {
+        @include full;
+      }
+
+      &.widget-fourths:not(.has-featured-content-widget) .widget:first-of-type,
+      &.widget-thirds:not(.has-featured-content-widget) .widget:first-of-type,
+      &.widget-halves:not(.has-featured-content-widget) .widget:first-of-type  {
+        @include full;
+      }
+
+    }
+
+  }
+
+}
+
+.flexible-widget-area,
+.parallax-widget-area,
+.parallax-widget-areas {
+  .fullwidth,
+  .full-width,
+  &.fullwidth,
+  &.full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+
+    > .wrap {
+      padding: 5rem 3rem;
+      position: relative;
+    }
+
+  }
+}
+
